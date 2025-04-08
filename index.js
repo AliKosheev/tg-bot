@@ -1,17 +1,16 @@
-require('dotenv').config();
-const { Telegraf } = require('telegraf');
+require('dotenv').config(); // сначала загружаем переменные окружения
+const { Telegraf } = require('telegraf'); // потом импортируем Telegraf
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-// Команда /start с WebApp-кнопкой
 bot.start((ctx) => {
-  ctx.reply('Добро пожаловать!', {
+  ctx.reply("Добро пожаловать!", {
     reply_markup: {
       keyboard: [
         [
           {
-            text: 'Открыть WebApp',
-            web_app: { url: 'https://tg-web-app-delta.vercel.app/' }, // <-- ссылка на Vercel
+            text: "Открыть WebApp",
+            web_app: { url: "https://tg-web-app-delta.vercel.app/" },
           },
         ],
       ],
