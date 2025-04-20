@@ -1,23 +1,21 @@
 require("dotenv").config();
 const TelegramBot = require("node-telegram-bot-api");
 
-// Выводим токен для отладки
 console.log("🔐 Loaded token:", process.env.TELEGRAM_BOT_TOKEN);
 
-// Создаём экземпляр бота
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
 
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  const username = msg.from?.username;
 
-  // Базовая ссылка на WebApp
-  const webAppBaseUrl = "https://tg-web-app-delta.vercel.app";
+  const userData = {
+    id: msg.from.id,
+    username: msg.from.username,
+    first_name: msg.from.first_name,
+    last_name: msg.from.last_name,
+  };
 
-  // Добавляем username в ссылку, если он есть
-  const webAppUrl = username
-    ? `${webAppBaseUrl}?user=${encodeURIComponent(username)}`
-    : webAppBaseUrl;
+  const webAppUrl = `https://tg-web-app-delta.vercel.app?user=${encodeURIComponent(JSON.stringify(userData))}`;
 
   bot.sendMessage(chatId, "Добро пожаловать в Triply! 🚀", {
     reply_markup: {
