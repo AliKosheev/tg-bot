@@ -15,7 +15,7 @@ bot.onText(/\/start/, (msg) => {
     last_name: msg.from.last_name,
   };
 
-  const webAppUrl = `https://tg-web-app-delta.vercel.app?user=${encodeURIComponent(JSON.stringify(userData))}`;
+  const webAppUrl = `https://24triply.ru?user=${encodeURIComponent(JSON.stringify(userData))}`;
 
   bot.sendMessage(chatId, "Добро пожаловать в Triply! 🚀", {
     reply_markup: {
